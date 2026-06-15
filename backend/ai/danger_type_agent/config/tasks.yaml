@@ -1,0 +1,21 @@
+classify_danger_task:
+  description: >
+    A message has been flagged as unsafe. Analyze the message and any conversation context
+    to determine the specific category of threat.
+
+    Message: {message}
+    Conversation context: {conversation_context}
+
+    Classify into exactly one of the following:
+    - GROOMING: building trust/relationship with a child or vulnerable person for exploitation
+    - SCAM: financial fraud, fake prizes, advance-fee fraud, too-good-to-be-true offers
+    - SEXUAL_CONTENT: explicit sexual content, solicitation, or pornographic material
+    - PHISHING: stealing credentials, passwords, personal data, or account access
+    - HARASSMENT: bullying, repeated threats, intimidation, stalking behavior
+    - VIOLENCE: explicit threats of physical harm or graphic violent content
+    - UNKNOWN: harmful but does not clearly fit any category above
+
+    Pick the single best category. Provide a clear explanation citing specific parts of the message.
+  expected_output: >
+    JSON with danger_type (one of the enum values), confidence_level (0-100), and explanation
+  agent: danger_classifier_agent

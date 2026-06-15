@@ -1,0 +1,24 @@
+generate_safety_report_task:
+  description: >
+    Generate a detailed safety report for a flagged conversation. This report will be displayed
+    directly to a parent, guardian, or platform moderator.
+
+    Flagged message: {message}
+    Conversation context: {conversation_context}
+    Danger type: {danger_type}
+    User context: {user_context}
+
+    Alert level guidelines:
+    - CRITICAL: GROOMING or SEXUAL_CONTENT involving a minor, immediate danger
+    - HIGH: SCAM, PHISHING, VIOLENCE threat, or GROOMING targeting an adult
+    - MEDIUM: HARASSMENT, UNKNOWN with clear harmful intent
+    - LOW: mild inappropriate language, ambiguous but flagged
+
+    The summary must be written in plain language a non-technical parent can understand.
+    The recommended_action must be specific and actionable (not vague like "be careful").
+    evidence_snippets must quote exact words/phrases from the message.
+    should_notify_guardian: true for CRITICAL/HIGH alerts.
+    should_block_sender: true for CRITICAL alerts and repeat HARASSMENT offenders.
+  expected_output: >
+    A complete JSON safety report matching the SafetyReportSchema
+  agent: safety_response_agent

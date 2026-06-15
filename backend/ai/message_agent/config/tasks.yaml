@@ -1,0 +1,20 @@
+message_safety_task:
+  description: >
+    Analyze the following message for safety. Consider the full conversation context if provided.
+
+    Message: {message}
+    Conversation context: {conversation_context}
+
+    Determine if this message is safe. A message is UNSAFE if it contains or attempts:
+    - Sexual content or solicitation
+    - Grooming behavior (building inappropriate trust/relationship)
+    - Financial scams, fake prizes, or fraud
+    - Phishing for personal data or credentials
+    - Threats, harassment, or bullying
+    - Requests to meet in person from strangers
+
+    Return a confidence_level between 0-100 representing how certain you are of your verdict.
+    If is_safe is false and confidence_level is below 80, re-examine the message more carefully.
+  expected_output: >
+    JSON with is_safe (boolean) and confidence_level (0-100 float)
+  agent: message_safety_agent
